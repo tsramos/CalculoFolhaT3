@@ -16,21 +16,30 @@ namespace CalculoFolha
             Console.WriteLine("Informe o salario inical.");
             salario = double.Parse(Console.ReadLine());
             Console.WriteLine("Informe a taxa de imposto cobrado (%).");
-            imposto = int.Parse(Console.ReadLine());
-            double desconto = salario * imposto / 100;
-            double salarioLiquido = salario - desconto;
+            imposto = int.Parse(Console.ReadLine());           
+            double salarioLiquido = CalculaSalarioLiquido(imposto, salario);
             Console.WriteLine($"Nome: {nome}");
             Console.WriteLine("Salario Liquido: " + salarioLiquido);
             string sep = new string('=',50);
             Console.WriteLine(sep);
             Console.WriteLine("Informe qual a porcentagem do aumento");
             int aumento = int.Parse(Console.ReadLine());
-            double promocao = salario * aumento / 100;
-            salario += promocao;
-            desconto = salario * imposto / 100;
-            salarioLiquido = salario - desconto;
+            salario = CalculaAumentoSalario(aumento, salario);      
+            salarioLiquido = CalculaSalarioLiquido(imposto, salario);
             Console.WriteLine("Salario bruto :" + salario);
             Console.WriteLine("Salario liquido :" + salarioLiquido);
+        }
+
+        public static double CalculaAumentoSalario(int taxa, double salario)
+        {
+            double aumento = salario * taxa / 100;
+            return salario + aumento;
+        }
+
+        public static double CalculaSalarioLiquido(int imposto , double salario)
+        {
+            double desconto = salario * imposto / 100;
+            return salario - desconto;
         }
     }
 }
