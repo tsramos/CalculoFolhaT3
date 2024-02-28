@@ -7,26 +7,24 @@ namespace CalculoFolha
         static void Main(string[] args)
         {
             //Dados funcionario
-            string nome;
-            double salario;
-            int imposto;
+            Funcionario funcionario = new Funcionario();  
 
             Console.WriteLine("Informe o nome do funcionario");
-            nome = Console.ReadLine();
+            funcionario.Nome = Console.ReadLine();
             Console.WriteLine("Informe o salario inical.");
-            salario = double.Parse(Console.ReadLine());
+            funcionario.Salario = double.Parse(Console.ReadLine());
             Console.WriteLine("Informe a taxa de imposto cobrado (%).");
-            imposto = int.Parse(Console.ReadLine());           
-            double salarioLiquido = CalculaSalarioLiquido(imposto, salario);
-            Console.WriteLine($"Nome: {nome}");
+            funcionario.Imposto = int.Parse(Console.ReadLine());           
+            double salarioLiquido = CalculaSalarioLiquido(funcionario.Imposto, funcionario.Salario);
+            Console.WriteLine($"Nome: {funcionario.Nome}");
             Console.WriteLine("Salario Liquido: " + salarioLiquido);
             string sep = new string('=',50);
             Console.WriteLine(sep);
             Console.WriteLine("Informe qual a porcentagem do aumento");
             int aumento = int.Parse(Console.ReadLine());
-            salario = CalculaAumentoSalario(aumento, salario);      
-            salarioLiquido = CalculaSalarioLiquido(imposto, salario);
-            Console.WriteLine("Salario bruto :" + salario);
+            funcionario.Salario = CalculaAumentoSalario(aumento, funcionario.Salario);      
+            salarioLiquido = CalculaSalarioLiquido(funcionario.Imposto, funcionario.Salario);
+            Console.WriteLine("Salario bruto :" + funcionario.Salario);
             Console.WriteLine("Salario liquido :" + salarioLiquido);
         }
 
